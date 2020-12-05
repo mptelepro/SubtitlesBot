@@ -13,7 +13,18 @@ from telegram import (
 from telegram.ext import CallbackContext
 
 def start(update: Update, context: CallbackContext):
-    context.bot.send_message(chat_id=update.effective_chat.id, text=f"Hi *{update.effective_user.first_name}*!\n\nI am subtitle downloader bot. I can provide movie subtitles.\n\n==> Just send me Movie name. Use @imdb or @imdbot inline to get currect movie name.\n\nSubscribe ℹ️ @Keralabotsnews if you ❤️ using this bot!", parse_mode="Markdown")
+    reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton('Support Group', url='https://t.me/linux_repo'),
+                    InlineKeyboardButton('Developer', url='https://t.me/AbirHasan2005')
+                ],
+                [
+                    InlineKeyboardButton('Telegram Bots Updates Channel', url='https://t.me/Discovery_Updates'),
+                ]
+            ]
+        )
+    context.bot.send_message(chat_id=update.effective_chat.id, text=f"Hi, *{update.effective_user.first_name}*!\n\nI am **Subtitles Search Bot**. I can provide you movie subtitles.\n\n——→ Just Send me Movie Name with Release Year. \n\n**Example:** `Extraction 2020`", parse_mode="Markdown", reply_markup=reply_markup)
 
 def searching(update: Update, context: CallbackContext):
     if update.message.via_bot != None:
